@@ -27,7 +27,7 @@
                   </div>
                 </div>
                 <div class="flex items-center mt-4 md:mt-0 md:ml-3 lg:ml-0">
-                  <button @click="add = true"
+                  <button @click="addModal = true"
                     class="inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
                     <p class="text-sm font-medium leading-none text-white">
                       Añadir
@@ -51,7 +51,8 @@
                 </tr>
               </thead>
               <tbody class="w-full">
-                <tr v-for="item in items" class="h-20 text-sm leading-none text-gray-700 border-b border-t border-gray-200 bg-white hover:bg-gray-100">
+                <tr v-for="item in items"
+                  class="h-20 text-sm leading-none text-gray-700 border-b border-t border-gray-200 bg-white hover:bg-gray-100">
                   <td class="pl-4 text-center">
                     {{ item.rut }}
                   </td>
@@ -72,689 +73,17 @@
                   </td>
                   <td>
                     <div class="flex items-center">
-                      <button
-                        class=" mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
+                      <button class=" mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
                         Ver
                       </button>
                       <button
                         class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
                         Editar
                       </button>
-                      <button
+                      <button @click="deleteItem(item.id)"
                         class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
                         Borrar
                       </button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr
-                  class="h-20 text-sm leading-none text-gray-700 border-b border-t border-gray-200 bg-white hover:bg-gray-100">
-                  <!-- Rut -->
-                  <td class="pl-4">1</td>
-                  <!-- Nombres -->
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice.png" />
-                      Miracle Botos
-                    </div>
-                  </td>
-                  <!-- Apellidos -->
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <!-- Direccion -->
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <!-- Ciudad-->
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <!-- Telefono -->
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <!-- Opciones -->
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table1 = !table1">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table1" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr
-                  class="h-20 text-sm leading-none text-gray-700 border-b border-t border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">1</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice.png" />
-                      Miracle Botos
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table1 = !table1">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table1" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">2</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(1).png" />
-                      Tiana Levin
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table2 = !table2">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table2" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">3</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(2).png" />
-                      Jordyn Korsgaard
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-yellow-50 rounded-full">
-                      <p class="text-xs leading-3 text-yellow-600">Pending</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table3 = !table3">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table3" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">4</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(3).png" />
-                      Kierra Curtis
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table4 = !table4">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table4" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">5</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(4).png" />
-                      Terry Ekstrom Bothman
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table5 = !table5">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table5" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">6</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(6).png" />
-                      Corey Vetrovs
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-yellow-50 rounded-full">
-                      <p class="text-xs leading-3 text-yellow-600">Pending</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table6 = !table6">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table6" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">7</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(7).png" />
-                      Zain George
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table7 = !table7">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table7" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 border-b border-gray-200 bg-white hover:bg-gray-100">
-                  <td class="pl-4">8</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(8).png" />
-                      Angel Saris
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-yellow-50 rounded-full">
-                      <p class="text-xs leading-3 text-yellow-600">Pending</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table8 = !table8">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table8" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 bg-white hover:bg-gray-100">
-                  <td class="pl-4">9</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(9).png" />
-                      Desirae Dorwart
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-red-50 rounded-full">
-                      <p class="text-xs leading-3 text-red-500">Banned</p>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table9 = !table9">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table9" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-20 text-sm leading-none text-gray-700 bg-white hover:bg-gray-100">
-                  <td class="pl-4">10</td>
-                  <td class="pl-11">
-                    <div class="flex items-center">
-                      <img class="shadow-md rounded-full w-10 h-10 mr-3"
-                        src="https://cdn.tuk.dev/assets/templates/olympus/invoice(10).png" />
-                      Desirae Dorwart
-                    </div>
-                  </td>
-                  <td>
-                    <p class="mr-16 pl-10">28</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">06/02/2020</p>
-                  </td>
-                  <td>
-                    <p class="mr-16">Product Designer</p>
-                  </td>
-                  <td>
-                    <div class="w-20 h-6 flex items-center mr-16 justify-center bg-blue-50 rounded-full">
-                      <p class="text-xs leading-3 text-blue-500">Approved</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex items-center">
-                      <button
-                        class="bg-gray-100 mr-3 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Edit
-                      </button>
-                      <button
-                        class="bg-gray-100 mr-5 hover:bg-gray-200 py-2.5 px-5 rounded text-sm leading-3 text-gray-500">
-                        Call
-                      </button>
-                      <div class="relative px-5 pt-2">
-                        <button class="focus:outline-none" @click="table10 = !table10">
-                          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20" fill="none">
-                            <path
-                              d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                              d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z"
-                              stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <div v-if="table10" class="dropdown-content bg-white shadow w-24 absolute z-30 -ml-20">
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Edit</p>
-                          </div>
-                          <div class="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                            <p>Delete</p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </td>
                 </tr>
@@ -766,15 +95,15 @@
     </div>
   </div>
   <Transition>
-    <div id="popup" role="dialog" aria-modal="true" class="w-full h-full fixed left-0 top-0" v-if="add">
-      <div class="absolute bg-slate-900/40 inset-0 backdrop-blur-sm" @click="add = false"></div>
+    <div id="popup" role="dialog" aria-modal="true" class="w-full h-full fixed left-0 top-0" v-if="addModal">
+      <div class="absolute bg-slate-900/40 inset-0 backdrop-blur-sm" @click="addModal = false"></div>
       <div class="w-full py-8 h-full flex items-center justify-center md:px-0 px-4">
         <div
           class="rounded-md w-full overflow-y-auto lg:h-auto h-full sm:w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 relative">
           <div
             class="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
             <p class="text-base font-semibold">Añadir Registro</p>
-            <button @click="add = false" class="focus:outline-none">
+            <button @click="addModal = false" class="focus:outline-none">
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 7L7 21" stroke="#A1A1AA" stroke-width="1.75" stroke-linecap="round"
                   stroke-linejoin="round" />
@@ -784,11 +113,13 @@
             </button>
           </div>
           <div class="px-4 md:px-10 pt-8 md:pt-8 md:pb-6 pb-8 bg-white rounded-b-md">
-            <Form @submit="submit">
+            <form novalidate @submit.prevent="submitForm">
               <div class="sm:flex items-center sm:pt-0">
                 <div class="sm:w-1/2 mt-2">
-                  <input type="text" name="rut" id="rut" placeholder="RUT"
-                    class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <input type="text" name="rut" id="rut" placeholder="RUT" v-model="formData.rut"
+                    class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none border text-gray-800 bg-white rounded border-gray-200" />
+                  <p v-for="error in v$.rut.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
                 </div>
                 <div class="sm:w-1/2 ml-9">
                 </div>
@@ -796,82 +127,117 @@
               <div class="sm:flex items-center sm:pt-0 sm:mt-4 sm:space-x-9">
 
                 <div class="sm:w-1/2 mt-2">
-                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" placeholder="Nombres" 
+                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" placeholder="Nombres"
+                    v-model="formData.name"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <p v-for="error in v$.name.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
                 </div>
 
                 <div class="sm:w-1/2 mt-2">
                   <input type="text" name="last-name" id="last-name" autocomplete="family-name" placeholder="Apellidos"
+                    v-model="formData.lastname"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <p v-for="error in v$.lastname.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
                 </div>
 
               </div>
               <div class="sm:flex items-center sm:pt-0 sm:space-x-9 sm:mt-4">
                 <div class="w-full mt-2">
-                  <input type="text" name="street-address" id="street-address" autocomplete="street-address" 
-                    placeholder="Dirección"
+                  <input type="text" name="street-address" id="street-address" autocomplete="street-address"
+                    v-model="formData.address" placeholder="Dirección"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <p v-for="error in v$.address.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
                 </div>
               </div>
               <div class="sm:flex items-center sm:pt-0 sm:space-x-9 sm:mt-4">
                 <div class="sm:w-1/2 mt-2">
-                  <input type="text" name="city" id="city" autocomplete="address-level2" placeholder="Ciudad" 
+                  <input type="text" name="city" id="city" autocomplete="address-level2" placeholder="Ciudad"
+                    v-model="formData.city"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <p v-for="error in v$.city.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
                 </div>
                 <div class="sm:w-1/2 mt-2">
                   <div class="relative rounded-md shadow-sm">
                     <div class=" pointer-events-none absolute inset-y-0 left-0 border-r flex items-center p-3">
-                      <span class="text-gray-500 sm:text-sm">+56</span>
+                      <p class="text-gray-500 sm:text-sm">+56</p>
                     </div>
-                    <input type="text" name="phone" id="phone" placeholder="Teléfono"
+                    <input type="text" name="phone" id="phone" placeholder="Teléfono" v-model="formData.phone"
                       class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 pl-16 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
 
                   </div>
+                  <p v-for="error in v$.phone.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
                 </div>
               </div>
               <div class="sm:flex items-center sm:pt-0  sm:space-x-9 sm:mt-3">
                 <div class="w-full mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" 
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="Email"
+                    v-model="formData.email"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                  <p v-for="error in v$.email.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
 
                 </div>
               </div>
-              <div class="sm:flex items-end sm:pt-0 sm:space-x-9 sm:mt-3">
+              <div class="sm:flex items-center sm:pt-0 sm:space-x-9 sm:mt-3">
 
                 <div class="sm:w-1/2 w-full">
-                  <span class="text-sm font-semibold leading-6 text-gray-600">Fecha de nacimiento</span>
-                  <input type="date"
+                  <p class="text-sm font-semibold leading-6 text-gray-600">Fecha de nacimiento</p>
+                  <input type="date" v-model="formData.date"
                     class="w-full mt-1 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
                     placeholder="Fecha de Nacimiento" />
+                  <p v-for="error in v$.date.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
                 </div>
-                <div class="w-full sm:w-1/2 sm:mt-2 mt-4 bg-white border rounded border-gray-200 py-2.5 px-3">
-                  <select class="text-sm p-0 text-gray-500 border-0 w-full focus:outline-none">
-                    <option class="bg-slate-200" selected disabled value="">Estado Civil</option>
-                    <option>Soltero(a)</option>
-                    <option>Casado(a)</option>
-                    <option>Conviviente civil</option>
-                    <option>Separado(a) judicialmente</option>
-                    <option>Divorciado(a)</option>
-                    <option>Viudo(a)</option>
-                  </select>
+                <div >
+                  <p class="text-sm font-semibold leading-6 text-gray-600">Estado Civil</p>
+
+                  <div class="w-full sm:mt-2 mt-4 bg-white border rounded border-gray-200 py-2.5 px-3">
+                    
+                    <select class="text-sm p-0 text-gray-500 border-0 w-full focus:outline-none"
+                      v-model="formData.status">
+                      <option class="bg-slate-200" selected disabled value=""></option>
+                      <option>Soltero(a)</option>
+                      <option>Casado(a)</option>
+                      <option>Conviviente civil</option>
+                      <option>Separado(a) judicialmente</option>
+                      <option>Divorciado(a)</option>
+                      <option>Viudo(a)</option>
+                    </select>
+
+                  </div>
+                  <p v-for="error in v$.status.$errors" :key="error.$uid"
+                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
                 </div>
               </div>
               <div class="mt-6">
-                <textarea placeholder="Comentarios"
+                <textarea placeholder="Comentarios" v-model="formData.comment"
                   class="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none"></textarea>
+                <p v-for="error in v$.comment.$errors" :key="error.$uid"
+                  class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+
               </div>
 
-            <div class="flex items-center justify-between mt-9">
-              <button @click="add = false"
-                class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
-                Cerrar
-              </button>
-              <button type="submit"
-                class="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">
-                Añadir
-              </button>
-            </div>
-          </Form>
+              <div class="flex items-center justify-between mt-9">
+                <button @click="addModal = false"
+                  class="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
+                  Cerrar
+                </button>
+                <button type="submit"
+                  class="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">
+                  Añadir
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -880,36 +246,92 @@
 
 </template>
 
-<script>
+<script setup>
+import { reactive, ref, computed, onMounted, watch } from 'vue';
+import useVuelidate from '@vuelidate/core';
+import { required, numeric, email, helpers } from '@vuelidate/validators';
 
-export default {
 
-  data() {
-    return {
-      add: false,
-      items: [
-        { rut: '210006702', name: 'Robyn Maya', lastname: 'something something', address: '123 132 mansfosdmgssg', city: 'La Serena', phone: '1312312313', }
-      ],
-    };
-  },
-  methods: {
-    showItem(item) {
-      // Implementar funcion para mostrar
-    },
-    editItem(item) {
-      // Implementar funcion para editar
-    },
-    deleteItem(item) {
-      // Implementar funcion para borrar
-    },
-    submit(values) {
-      console.log(values)
-    }
-  },
-  mounted() {
-    // Fetch
-  }
+
+// Modal Reactivity
+const addModal = ref(false);
+
+const items = ref([]);
+
+// Retrieve from Local Storage
+onMounted(() => {
+  items.value = JSON.parse(localStorage.getItem('formData')) || [];
+})
+
+watch(items, (formData) => {
+  localStorage.setItem('formData', JSON.stringify(formData));
+}, { deep: true });
+
+
+const addItem = () => {
+  items.value.push(formData)
 }
+
+const deleteItem = (id) => {
+  items.value = items.value.filter((item) => item.id !== id);
+}
+
+const showItem = (id) => {
+  
+}
+
+
+// Form submission
+
+const formData = reactive({
+  id: Date.now(),
+  rut: '',
+  name: '',
+  lastname: '',
+  address: '',
+  city: '',
+  phone: '',
+  email: '',
+  date: '',
+  status: '',
+  comment: '',
+})
+
+
+const rules = computed(() => {
+  return {
+    
+    rut: { required },
+    name: { required },
+    lastname: { required },
+    address: { required },
+    city: { required },
+    phone: { required, numeric },
+    email: { required, email },
+    date: {
+      required, minValue: helpers.withMessage('Date cannot be after tomorrow', value => {
+        console.log(value)
+        return new Date(value) < new Date()
+      }),
+    },
+    status: { required },
+    comment: { required },
+  }
+})
+
+const v$ = useVuelidate(rules, formData)
+
+const submitForm = async () => {
+
+  const result = await v$.value.$validate();
+  if (result) {
+    console.log('success!');
+    addItem();
+  } else {
+    console.log('nope')
+  }
+};
+
 </script>
 
 <style scoped>

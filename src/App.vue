@@ -297,13 +297,12 @@ const formData = reactive({
   comment: '',
 })
 
-// Validador de Rut
-function rutValidator(value) {
 
-}
+
 
 const rules = computed(() => {
   return {
+    // Validador de Rut
     rut: {
       required, rutValidator: helpers.withMessage('Rut no es válido', value => {
         if (!value) return false
@@ -333,19 +332,19 @@ const rules = computed(() => {
         return dv === dvExpected
       })
     },
-    name: { required: helpers.withMessage('El nombre es requerido') },
-    lastname: { required },
-    address: { required },
-    city: { required },
-    phone: { required, numeric },
-    email: { required, email },
+    name: { required: helpers.withMessage('El nombre es requerido', required)},
+    lastname: { required: helpers.withMessage('El apellido es requerido', required) },
+    address: { required: helpers.withMessage('La dirección es requerida', required) },
+    city: { required: helpers.withMessage('La ciudad es requerida', required) },
+    phone: { required: helpers.withMessage('El telefono es requerido', required), numeric },
+    email: { required, email: helpers.withMessage('El email no es válido', email) },
     date: {
       required, minValue: helpers.withMessage('Date cannot be after tomorrow', value => {
         console.log(value)
         return new Date(value) < new Date()
       }),
     },
-    status: { required },
+    status: { required: helpers.withMessage('Seleccione un estado marital', required) },
     comment: { required },
   }
 })

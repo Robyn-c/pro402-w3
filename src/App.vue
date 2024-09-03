@@ -118,8 +118,8 @@
                 <div class="sm:w-1/2 mt-2">
                   <input type="text" name="rut" id="rut" placeholder="RUT" v-model="formData.rut"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none border text-gray-800 bg-white rounded border-gray-200" />
-                  <p v-for="error in v$.rut.$errors" :key="error.$uid"
-                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+                  <p v-for="error in v$.rut.$errors" :key="error.$uid" class="text-red-500 font-semibold text-sm pl-2">
+                    {{ error.$message }}</p>
                 </div>
                 <div class="sm:w-1/2 ml-9">
                 </div>
@@ -130,8 +130,8 @@
                   <input type="text" name="first-name" id="first-name" autocomplete="given-name" placeholder="Nombres"
                     v-model="formData.name"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                  <p v-for="error in v$.name.$errors" :key="error.$uid"
-                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+                  <p v-for="error in v$.name.$errors" :key="error.$uid" class="text-red-500 font-semibold text-sm pl-2">
+                    {{ error.$message }}</p>
 
                 </div>
 
@@ -160,8 +160,8 @@
                   <input type="text" name="city" id="city" autocomplete="address-level2" placeholder="Ciudad"
                     v-model="formData.city"
                     class="w-full focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                  <p v-for="error in v$.city.$errors" :key="error.$uid"
-                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+                  <p v-for="error in v$.city.$errors" :key="error.$uid" class="text-red-500 font-semibold text-sm pl-2">
+                    {{ error.$message }}</p>
 
                 </div>
                 <div class="sm:w-1/2 mt-2">
@@ -194,15 +194,15 @@
                   <input type="date" v-model="formData.date"
                     class="w-full mt-1 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
                     placeholder="Fecha de Nacimiento" />
-                  <p v-for="error in v$.date.$errors" :key="error.$uid"
-                    class="text-red-500 font-semibold text-sm pl-2">{{ error.$message }}</p>
+                  <p v-for="error in v$.date.$errors" :key="error.$uid" class="text-red-500 font-semibold text-sm pl-2">
+                    {{ error.$message }}</p>
 
                 </div>
-                <div >
+                <div>
                   <p class="text-sm font-semibold leading-6 text-gray-600">Estado Civil</p>
 
                   <div class="w-full sm:mt-2 mt-4 bg-white border rounded border-gray-200 py-2.5 px-3">
-                    
+
                     <select class="text-sm p-0 text-gray-500 border-0 w-full focus:outline-none"
                       v-model="formData.status">
                       <option class="bg-slate-200" selected disabled value=""></option>
@@ -277,7 +277,7 @@ const deleteItem = (id) => {
 }
 
 const showItem = (id) => {
-  
+
 }
 
 
@@ -297,12 +297,43 @@ const formData = reactive({
   comment: '',
 })
 
+// Validador de Rut
+function rutValidator(value) {
+
+}
 
 const rules = computed(() => {
   return {
-    
-    rut: { required },
-    name: { required },
+    rut: {
+      required, rutValidator: helpers.withMessage('Rut no es válido', value => {
+        if (!value) return false
+
+        // Elimina puntos y guiones
+        value = value.replace(/[^0-9kK]/g, '')
+
+        // Si el valor tiene menos de 2 caracteres no es válido
+        if (value.length < 2) return false
+
+        // Separa el cuerpo del dígito verificador
+        const body = value.slice(0, -1)
+        const dv = value.slice(-1).toUpperCase()
+
+        // Calcula el dígito verificador
+        let sum = 0
+        let factor = 2
+
+        for (let i = body.length - 1; i >= 0; i--) {
+          sum += factor * parseInt(body.charAt(i), 10)
+          factor = factor === 7 ? 2 : factor + 1
+        }
+
+        const calculatedDv = 11 - (sum % 11)
+        const dvExpected = calculatedDv === 11 ? '0' : calculatedDv === 10 ? 'K' : calculatedDv.toString()
+
+        return dv === dvExpected
+      })
+    },
+    name: { required: helpers.withMessage('El nombre es requerido') },
     lastname: { required },
     address: { required },
     city: { required },
